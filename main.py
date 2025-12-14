@@ -1,6 +1,8 @@
 import pygame
 from constants import *
 from logger import log_state
+from player import *
+from circleshape import *
 
 
 def main():
@@ -22,6 +24,10 @@ def main():
         
         screen.fill("black")
         
+        #draw player
+        player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+        player.draw(screen)
+
         dt = clock.tick(60)/1000 #FPS max
         pygame.display.flip()
 
