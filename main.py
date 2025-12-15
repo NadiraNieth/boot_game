@@ -1,6 +1,7 @@
-import pygame
+import pygame, sys
+
 from constants import *
-from logger import log_state
+from logger import log_state, log_event
 from player import *
 from circleshape import *
 from asteroid import *
@@ -41,6 +42,12 @@ def main():
             thing.draw(screen)
         
         updatable.update(dt)
+
+        for asteroid in asteroids:
+            if asteroid.collides_with(player):
+                log_event("player_hit")
+                print("Game over!")
+                sys.exit()
 
         dt = clock.tick(60)/1000 #FPS max
         pygame.display.flip()
