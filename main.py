@@ -57,7 +57,7 @@ def main():
                 if asteroid.collides_with(shot):
                     log_event("asteroid_shot")
                     shot.kill()
-                    asteroid.kill()
+                    asteroid.split()
 
         dt = clock.tick(60)/1000 #FPS max
         pygame.display.flip()
