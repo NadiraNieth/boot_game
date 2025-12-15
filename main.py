@@ -3,6 +3,8 @@ from constants import *
 from logger import log_state
 from player import *
 from circleshape import *
+from asteroid import *
+from asteroidfield import *
 
 
 def main():
@@ -17,8 +19,14 @@ def main():
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+
     Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
+    asteroidfield = AsteroidField()
 
     while True:
         log_state()
@@ -29,10 +37,9 @@ def main():
         
         screen.fill("black")
         
-        #player.draw(screen)
-        #player.update(dt)
         for thing in drawable:
             thing.draw(screen)
+        
         updatable.update(dt)
 
         dt = clock.tick(60)/1000 #FPS max
